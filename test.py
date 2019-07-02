@@ -2,7 +2,7 @@ from find_traces import track
 from find_ips import domain_resolution
 
 data = open('data/yt_cdn.txt', 'r')
-res = open('data/yt_ip.txt', 'w')
+res = open('data/yt_ip_hongkong.txt', 'w')
 
 count = 0
 extra = []
