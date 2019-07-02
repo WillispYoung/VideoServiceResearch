@@ -91,7 +91,6 @@ r6---sn-npoe7n7r.googlevideo.com
 r3---sn-npoe7n7s.googlevideo.com
 r2---sn-npoe7ned.googlevideo.com
 r5---sn-npoe7n7y.googlevideo.com
-redirector.googlevideo.com
 r1---sn-npoe7nek.googlevideo.com
 r2---sn-npoeener.googlevideo.com
 r1---sn-npoe7n76.googlevideo.com

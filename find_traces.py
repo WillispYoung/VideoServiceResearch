@@ -29,6 +29,7 @@ def track(domain):
         count += 1
         line = output.readline()
     print(res)
+    return res
 
 
 if __name__ == "__main__":
