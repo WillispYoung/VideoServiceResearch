@@ -5,7 +5,7 @@ from find_ips import domain_resolution
 
 
 data = open('data/yt_cdn.txt', 'r')
-res = open('data/yt_delay_singapore.txt', 'w')
+res = open('data/yt_delay_hongkong.txt', 'w')
 
 count = 0
 delays = []
