@@ -17,10 +17,6 @@ async function find_cdn(urls, index) {
 		});
 		return;
 	}
-	
-	if (domains.size == 40) {
-		console.log(domains);
-	}
 
 	url = urls[index];
 
@@ -36,6 +32,9 @@ async function find_cdn(urls, index) {
 				domain = words[2];
 				// console.log(domain);
 				if (domain.endsWith("googlevideo.com")) {
+					if (bad_cdns.has(domain)) {
+						console.log("Hit bad CDN.");
+					}
 					// console.log(domain);
 					domains.add(domain);
 				}
@@ -59,5 +58,22 @@ async function find_cdn(urls, index) {
 }
 
 var urls = fs.readFileSync('data/yt_urls.txt').toString().split('\n');
+var bad_cdns = new Set();
+
+var lines = fs.readFileSync('data/Singapore/yt_good_bad_cdns.txt').toString().split('\n');
+var flag = false;
+
+lines.forEach(line => {
+	if (flag) {
+		words = line.split(' ');
+		if (words[0].length > 0) 
+			bad_cdns.add(words[0]);
+	}
+	if (line.startsWith("Bad CDNs")) {
+		flag = true;
+	}
+});
+
+console.log(bad_cdns);
 
 find_cdn(urls, 0);
