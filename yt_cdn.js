@@ -65,7 +65,7 @@ async function find_cdn(urls, index) {
 	}
 }
 
-var urls = fs.readFileSync('data/yt_urls.txt').toString().split('\n');
+var urls = fs.readFileSync('urls.txt').toString().split('\n');
 var bad_cdns = new Set();
 
 var lines = fs.readFileSync('data/Singapore/yt_good_bad_cdns.txt').toString().split('\n');
