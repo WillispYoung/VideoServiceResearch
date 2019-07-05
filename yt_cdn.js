@@ -6,6 +6,15 @@ const fs = require('fs');
 
 var domains = new Set();
 
+function delay(n) {  
+  n = n || 2000;
+  return new Promise(done => {
+    setTimeout(() => {
+      done();
+    }, n);
+  });
+}
+
 async function find_cdn(urls, index) {
 	let client;
 
@@ -13,7 +22,6 @@ async function find_cdn(urls, index) {
 		// Save result.
 		domains.forEach(d => {
    			fs.appendFile('yt_cdns.txt', d + "\n", error => {});
-   			// console.log(d);
 		});
 		return;
 	}
@@ -26,16 +34,13 @@ async function find_cdn(urls, index) {
 
 		// CDN url is contained in params.request.url.
 		Network.requestWillBeSent((params) => {
-			// console.log("RS: " + params.request.url + "\n");
 			words = params.request.url.split("/");
 			if (words.length > 2) {
 				domain = words[2];
-				// console.log(domain);
 				if (domain.endsWith("googlevideo.com")) {
 					if (bad_cdns.has(domain)) {
 						console.log("Hit bad CDN.");
 					}
-					// console.log(domain);
 					domains.add(domain);
 				}
 			}
@@ -52,8 +57,11 @@ async function find_cdn(urls, index) {
 	}
 	finally {
 		// Force synchronous execution.
-		// console.log(domains.size);
-		find_cdn(urls, index + 1);
+		setTimeout(function() {
+			find_cdn(urls, index + 1);
+		}, 1000);
+		// delay(1000);
+		// find_cdn(urls, index + 1);
 	}
 }
 
