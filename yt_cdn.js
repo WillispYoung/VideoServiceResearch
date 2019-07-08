@@ -6,15 +6,6 @@ const fs = require('fs');
 
 var domains = new Set();
 
-function delay(n) {  
-  n = n || 2000;
-  return new Promise(done => {
-    setTimeout(() => {
-      done();
-    }, n);
-  });
-}
-
 async function find_cdn(urls, index) {
 	let client;
 
@@ -38,9 +29,9 @@ async function find_cdn(urls, index) {
 			if (words.length > 2) {
 				domain = words[2];
 				if (domain.endsWith("googlevideo.com")) {
-					if (bad_cdns.has(domain)) {
-						console.log("Hit bad CDN.");
-					}
+					// if (bad_cdns.has(domain)) {
+					// 	console.log("Hit bad CDN.");
+					// }
 					domains.add(domain);
 				}
 			}
@@ -66,22 +57,22 @@ async function find_cdn(urls, index) {
 }
 
 var urls = fs.readFileSync('urls.txt').toString().split('\n');
-var bad_cdns = new Set();
+// var bad_cdns = new Set();
 
-var lines = fs.readFileSync('data/Singapore/yt_good_bad_cdns.txt').toString().split('\n');
-var flag = false;
+// var lines = fs.readFileSync('data/Singapore/yt_good_bad_cdns.txt').toString().split('\n');
+// var flag = false;
 
-lines.forEach(line => {
-	if (flag) {
-		words = line.split(' ');
-		if (words[0].length > 0) 
-			bad_cdns.add(words[0]);
-	}
-	if (line.startsWith("Bad CDNs")) {
-		flag = true;
-	}
-});
+// lines.forEach(line => {
+// 	if (flag) {
+// 		words = line.split(' ');
+// 		if (words[0].length > 0) 
+// 			bad_cdns.add(words[0]);
+// 	}
+// 	if (line.startsWith("Bad CDNs")) {
+// 		flag = true;
+// 	}
+// });
 
-console.log(bad_cdns);
+// console.log(bad_cdns);
 
 find_cdn(urls, 0);
