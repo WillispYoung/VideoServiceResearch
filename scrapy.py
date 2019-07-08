@@ -22,7 +22,7 @@ domain = "https://youtube.com"
 option = webdriver.ChromeOptions()
 option.add_argument("--proxy-server=http://127.0.0.1:8080")
 
-browser = webdriver.Chrome("C:/Python/chromedriver74.exe", options=option)
+browser = webdriver.Chrome("C:/Python/chromedriver75.exe", options=option)
 browser.get(domain)
 
 # find urls on main page

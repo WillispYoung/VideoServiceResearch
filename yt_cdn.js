@@ -5,14 +5,23 @@ const CDP = require('chrome-remote-interface');
 const fs = require('fs');
 
 var domains = new Set();
+var appended = new Set();
 
 async function find_cdn(urls, index) {
 	let client;
 
+	if ((index + 1) % 40 == 0) {
+		console.log("processed " + index.toString() + " urls.");
+		appended.forEach(d => {
+   			fs.appendFile(args[3], d + "\n", error => {});
+		});
+		appended.clear();
+	}
+
 	if (index >= urls.length) {
 		// Save result.
-		domains.forEach(d => {
-   			fs.appendFile('yt_cdns.txt', d + "\n", error => {});
+		appended.forEach(d => {
+   			fs.appendFile(args[3], d + "\n", error => {});
 		});
 		return;
 	}
@@ -32,7 +41,10 @@ async function find_cdn(urls, index) {
 					// if (bad_cdns.has(domain)) {
 					// 	console.log("Hit bad CDN.");
 					// }
-					domains.add(domain);
+					if (!domains.has(domain)) {
+						domains.add(domain);
+						appended.add(domain);
+					}	
 				}
 			}
 		});
@@ -56,7 +68,12 @@ async function find_cdn(urls, index) {
 	}
 }
 
-var urls = fs.readFileSync('urls.txt').toString().split('\n');
+// node this.js url_file cdn_file
+var args = process.argv;
+var urls = fs.readFileSync(args[2]).toString().split('\n');
+
+console.log(urls.length);
+
 // var bad_cdns = new Set();
 
 // var lines = fs.readFileSync('data/Singapore/yt_good_bad_cdns.txt').toString().split('\n');
