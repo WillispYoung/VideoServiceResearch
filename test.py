@@ -31,14 +31,19 @@ elif flag == '-ping':
 # input: */ips.txt
 # output: */location.txt
 elif flag == "-location":
-	reader = geoip2.database.Reader('C:/Python.GeoLite2-City.mmdb')
+	reader = geoip2.database.Reader('C:/Python/GeoLite2-City.mmdb')
+	# reader2 = geoip2.database.Reader('C:/Python/GeoLite2-Country.mmdb')
 	for line in data.readlines():
 		ip = line.strip()
 		res = reader.city(ip)
-		try:
+		if res.city.name:
 			output.write(res.city.name + "\n")
-		except Exception:
-			output.write('\n')
+		else:
+			output.write(res.country.name + "\n")
+		# try:
+		# 	output.write(res.city.name + "\n")
+		# except Exception:
+		# 	output.write('\n')
 
 else:
 	sys.exit(0)
