@@ -44,4 +44,4 @@ else:
 	sys.exit(0)
 
 data.close()
-outptu.close()
+output.close()
