@@ -62,9 +62,7 @@ async function find_cdn(urls, index) {
 		// Force synchronous execution.
 		setTimeout(function() {
 			find_cdn(urls, index + 1);
-		}, 1000);
-		// delay(1000);
-		// find_cdn(urls, index + 1);
+		}, 500);
 	}
 }
 
@@ -72,7 +70,7 @@ async function find_cdn(urls, index) {
 var args = process.argv;
 var urls = fs.readFileSync(args[2]).toString().split('\n');
 
-console.log(urls.length);
+// console.log(urls.length);
 
 // var bad_cdns = new Set();
 
