@@ -1,9 +1,15 @@
-data = []
-for line in open('urls.txt', 'r').readlines():
-	if line.startswith('https://www.youtube.com/watch'):
-		data.append(line)
+import sys
+from find_ips import domain_resolution
 
-output = open('urls.txt', 'w')
-for d in data:
-	output.write(d)
+data = open(sys.argv[1], 'r')
+output = open(sys.argv[2], 'w')
+
+for line in data.readlines():
+	domain = line.strip()
+	ips = domain_resolution(domain)
+	for ip in ips:
+		output.write(ip + " ")
+	output.write('\n')
+
+data.close()
 output.close()
