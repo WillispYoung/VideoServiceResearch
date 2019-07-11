@@ -1,1 +1,1 @@
-chrome --remote-debugging-port=9222 --disable-accelerated-video --disable-gpu --disk-cache-size=1
+chrome --remote-debugging-port=9222 --disk-cache-size=1

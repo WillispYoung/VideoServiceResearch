@@ -62,7 +62,7 @@ async function find_cdn(urls, index) {
 		// Force synchronous execution.
 		setTimeout(function() {
 			find_cdn(urls, index + 1);
-		}, 500);
+		}, 100);
 	}
 }
 
