@@ -1,1 +1,0 @@
-chrome --remote-debugging-port=9222 --disk-cache-size=1
