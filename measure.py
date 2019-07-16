@@ -55,14 +55,17 @@ elif flag == "-statistics":
 	website = sys.argv[3]
 	reader = open("data/{}/statistics/{}_cdn_complete_set.txt".format(location, website), "r")
 	writer = open("data/{}/statistics/{}_cdn_complete_set_info.txt".format(location, website), "w")
-	content = reader.read().split("\r\n")
-	for line in content:
+	content = reader.read().split()
+	# print(content)
+	i = 0
+	while i < len(content):
 		# print(line)
-		items = line.split()
-		print(int(items[1]))
-		if int(items[1]) >= 4:
-			delay = ping(items[0]) * 1000
-			writer.write("{} {} {}\r\n".format(items[0], items[1], delay))
+		# items = line.split()
+		# print(int(items[1]))
+		if int(content[i+1]) >= 4:
+			delay = ping(content[i]) * 1000
+			writer.write("{} {} {}\r\n".format(content[i], content[i+1], delay))
+		i += 2
 	reader.close()
 	writer.close()
 
