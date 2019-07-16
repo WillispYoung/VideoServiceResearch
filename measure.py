@@ -55,8 +55,9 @@ elif flag == "-statistics":
 	website = sys.argv[3]
 	reader = open("data/{}/statistics/{}_cdn_complete_set.txt".format(location, website), "r")
 	writer = open("data/{}/statistics/{}_cdn_complete_set_info.txt".format(location, website), "w")
-	content = reader.readlines()
+	content = reader.read().split("\r\n")
 	for line in content:
+		# print(line)
 		items = line.split()
 		if int(items[1]) >= 4:
 			delay = ping(items[0]) * 1000
@@ -68,5 +69,3 @@ elif flag == "-statistics":
 else:
 	sys.exit(0)
 
-data.close()
-output.close()
