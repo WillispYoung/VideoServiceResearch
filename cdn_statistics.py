@@ -32,7 +32,7 @@ for l in location:
 		for d in date:
 			path = "data/" + l + "/" + d + "/" + w + "/cdns.txt"
 			if os.path.exists(path):
-				for line in open(path, 'r').readlines():
+				for line in set(open(path, 'r').readlines()):
 					domain = line.strip()
 					if len(domain):
 						cdn_complete_set[domain] += 1
