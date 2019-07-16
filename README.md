@@ -3,7 +3,7 @@ This repository holds files that conduct experiments on video providers.
 
 ---
 
-Chrome startup options used:
+### Chrome startup options used:
 
 1. --remote-debugging-port=9222 (**required**)
 2. --media-cache-size=4096 (optional but effective, size in *bytes*)
@@ -11,14 +11,14 @@ Chrome startup options used:
 
 ---
 
-File and directory format:
+### File and directory format:
 
 1. directory structure: location/date/website/{cdns, ips, delays, location}.txt
 2. line feed: use **\n** instead of **\r\n**
 
 ---
 
-Video websites:
+### Video websites:
 
 1. YouTube
 2. Vimeo
@@ -27,19 +27,19 @@ Video websites:
 
 ---
 
-TODO:
+### TODO:
 
 1. find a solution to crawl 500+ (or even 1000+) video pages with limited network consumption. If achieved, crawl only once a week.
 
 ---
 
-Clarification:
+### Clarification:
 
 Purpose of this work is utilizing (**finding** and **using**) better CDN servers when browsing certain video websites from the perspective of a client. 
 
-Fistly, it's necessary to characterize video websites. Questions to be answered include: what kind of domain strategy (<u>single domain</u> or <u>random prefix domains</u>) that a video website uses; does the video website take location into consideration; how many and how often would _bad_ CDNs be recommended? 
+Fistly, it's necessary to characterize video websites. Questions to be answered include: what kind of domain strategy (_single domain_ or _random prefix domains_) that a video website uses; does the video website take location into consideration; how many and how often would _bad_ CDNs be recommended? 
 
-Secondly, with different answers to these questions, different optimizaiton strategies are considered. If a video website uses single domain strategy, 
+Secondly, with different answers to these questions, different optimizaiton strategies are considered. If a video website uses single domain strategy, it suffices to modify local DNS cache so that DNS resolution of this domain directs the client to machines (labeled by IP address) that have better **performance**. Problems to be solved for this case: where to find better CDN servers, how often would bad CDN servers be recommended, and how to decide if a server performs good. One solution to find better CDN servers, according to *CoNEXT Drongo* paper, is utilizing DNS client subnet option to disguise the client as all the hops along the route from the client to the CDN server, and select from all the DNS recommendations of these hops. Also in this paper, ping delay is the metric used to characterize CDN performance.
 
+If a video website uses random prefix domain strategy, we need first find out as many random domains used by this website as possible, so that we can characterize this website more precisely. Then we need to find out how often and how many **bad** CDN servers would be used: if both results are innegligible, then it's meaningful to avoid being recommended with these bad CDN servers. However, this requries massive measurements on the video website.
 
- The first step is finding better CDN servers to be used, which is achieved by massive measurement; the second step is using these better CDN servers as a client. However, the pre-requisites of usability and effectiveness of such strategy is that *bad* CDN servers are recommended
