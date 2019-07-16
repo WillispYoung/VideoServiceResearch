@@ -13,7 +13,7 @@ This repository holds files that conduct experiments on video providers.
 
 ### File and directory format:
 
-1. directory structure: location/date/website/{cdns, ips, delays, location}.txt
+1. directory structure: location/website/date/{cdns, cdn_info}.txt
 2. line feed: use **\n** instead of **\r\n**
 
 ---
