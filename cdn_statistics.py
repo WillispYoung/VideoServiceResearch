@@ -22,12 +22,27 @@ for l in location:
 	print("total: " + str(len(cdn_complete_set)))
 	size_of_complete_set = len(cdn_complete_set)
 
-	for d in date:
-		for w in website:
+	writer = open("data/" + l + "/statistics/yt_cdn_complete_set.txt", "w")
+	for url in cdn_complete_set:
+		writer.write(url + "\r\n")
+	writer.close()
+
+	# writer = open("data/" + l + "/statistics/yt_cdn_proportion.txt", "w")
+	# for d in date:
+	# 	for w in website:
+	# 		path = "data/" + l + "/" + d + "/" + w + "/cdns.txt"
+	# 		if os.path.exists(path):
+	# 			size = len(set(open(path, 'r').readlines()))
+	# 			writer.write(d + " " + str(size / size_of_complete_set) + "\r\n")
+	# writer.close()
+	for w in website:
+		writer = open("data/" + l + "/statistics/" + w + "_cdn_proportion.txt", "w")
+		for d in date:
 			path = "data/" + l + "/" + d + "/" + w + "/cdns.txt"
 			if os.path.exists(path):
 				size = len(set(open(path, 'r').readlines()))
-				# print(size)
-				print(d + "\t" + str(size / size_of_complete_set))
+				# writer.write(d + " " + str(size / size_of_complete_set) + "\r\n")
+				writer.write("{} {:.3f}\r\n".format(d, size / size_of_complete_set))
+		writer.close()
 
 	print()
