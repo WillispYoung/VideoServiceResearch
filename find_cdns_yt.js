@@ -38,9 +38,6 @@ async function find_cdn(urls, index) {
 			if (words.length > 2) {
 				domain = words[2];
 				if (domain.endsWith("googlevideo.com")) {
-					// if (bad_cdns.has(domain)) {
-					// 	console.log("Hit bad CDN.");
-					// }
 					if (!domains.has(domain)) {
 						domains.add(domain);
 						appended.add(domain);
@@ -69,25 +66,5 @@ async function find_cdn(urls, index) {
 // node this.js url_file cdn_file
 var args = process.argv;
 var urls = fs.readFileSync(args[2]).toString().split('\n');
-
-// console.log(urls.length);
-
-// var bad_cdns = new Set();
-
-// var lines = fs.readFileSync('data/Singapore/yt_good_bad_cdns.txt').toString().split('\n');
-// var flag = false;
-
-// lines.forEach(line => {
-// 	if (flag) {
-// 		words = line.split(' ');
-// 		if (words[0].length > 0) 
-// 			bad_cdns.add(words[0]);
-// 	}
-// 	if (line.startsWith("Bad CDNs")) {
-// 		flag = true;
-// 	}
-// });
-
-// console.log(bad_cdns);
 
 find_cdn(urls, 0);

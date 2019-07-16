@@ -38,7 +38,6 @@ elif flag == "-location":
 	data = open(sys.argv[2], 'r')
 	output = open(sys.argv[3], 'w')
 	reader = geoip2.database.Reader('../GeoLite2-City.mmdb')
-	# reader2 = geoip2.database.Reader('C:/Python/GeoLite2-Country.mmdb')
 	for line in data.readlines():
 		ip = line.strip()
 		res = reader.city(ip)
@@ -56,12 +55,8 @@ elif flag == "-statistics":
 	reader = open("data/{}/statistics/{}_cdn_complete_set.txt".format(location, website), "r")
 	writer = open("data/{}/statistics/{}_cdn_complete_set_info.txt".format(location, website), "w")
 	content = reader.read().split()
-	# print(content)
 	i = 0
 	while i < len(content):
-		# print(line)
-		# items = line.split()
-		# print(int(items[1]))
 		if int(content[i+1]) >= 4:
 			delay = ping(content[i]) * 1000
 			writer.write("{} {} {:.3f}\r\n".format(content[i], content[i+1], delay))
