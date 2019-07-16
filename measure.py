@@ -59,6 +59,7 @@ elif flag == "-statistics":
 	for line in content:
 		# print(line)
 		items = line.split()
+		print(int(items[1]))
 		if int(items[1]) >= 4:
 			delay = ping(items[0]) * 1000
 			writer.write("{} {} {}\r\n".format(items[0], items[1], delay))
