@@ -64,7 +64,7 @@ elif flag == "-statistics":
 		# print(int(items[1]))
 		if int(content[i+1]) >= 4:
 			delay = ping(content[i]) * 1000
-			writer.write("{} {} {}\r\n".format(content[i], content[i+1], delay))
+			writer.write("{} {} {:.3f}\r\n".format(content[i], content[i+1], delay))
 		i += 2
 	reader.close()
 	writer.close()
