@@ -1,0 +1,21 @@
+{
+  "name": "Video Controler",
+  "description": "",
+  "version": "1.0.0",
+  "manifest_version": 2,
+  "browser_action": {
+    "default_popup": "popup.html"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "https://www.youtube.com/watch?v=*"
+      ],
+      "js": [
+        "video_pauser.js"
+      ],
+      "run_at": "document_end",
+      "all_frames": false
+    }
+  ]
+}

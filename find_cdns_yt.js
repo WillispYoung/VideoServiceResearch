@@ -68,3 +68,7 @@ var args = process.argv;
 var urls = fs.readFileSync(args[2]).toString().split('\n');
 
 find_cdn(urls, 0);
+
+
+// Break down record:
+// 19-7-17 280; 320; pages
