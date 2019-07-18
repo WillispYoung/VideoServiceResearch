@@ -29,7 +29,7 @@ This repository holds files that conduct experiments on video providers.
 
 ### TODO:
 
-1. find a solution to crawl 500+ (or even 1000+) video pages with limited network consumption. If achieved, crawl only once a week.
+1. find a solution to crawl 500+ (or even 1000+) video pages with limited network consumption. If achieved, crawl only once a week. One solution might be optimize **find_cdns_yt.js** and utilize certain Chrome options, yet another solution is using **Wireshark** to record network information while using chromedriver to navigate into URLs (Turns out this is absolutely useless, as even local traffic is in HTTPS format, thus hard to decrypt).
 
 ---
 
