@@ -57,9 +57,10 @@ async function find_cdn(urls, index) {
 	}
 	finally {
 		// Force synchronous execution.
-		setTimeout(function() {
-			find_cdn(urls, index + 1);
-		}, 500);
+		// setTimeout(function() {
+		// 	find_cdn(urls, index + 1);
+		// }, 500);
+		find_cdn(urls, index + 1);
 	}
 }
 
@@ -67,7 +68,8 @@ async function find_cdn(urls, index) {
 var args = process.argv;
 var urls = fs.readFileSync(args[2]).toString().split('\n');
 
-find_cdn(urls, 0);
+var index = 0;
+find_cdn(urls, index);
 
 // Break down record:
 // 19-7-17 280; 320; pages

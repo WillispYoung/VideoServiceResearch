@@ -1,0 +1,76 @@
+const CDP = require('chrome-remote-interface');
+const fs = require('fs');
+
+async function find_cdn(urls, index /* add pattern maybe ? */) {
+	var client = await CDP();
+	const {Network, Page} = client;
+
+	var domains = {};
+	var tmp_domain_set = new Set();
+
+	// Capture certain Network information.
+	Network.requestWillBeSent((params) => {
+		words = params.request.url.split("/");
+		if (words.length > 2) {
+			domain = words[2];
+			if (domain.endsWith("googlevideo.com")) {
+				if (!tmp_domain_set.has(domain)) {
+					console.log(count.toString() + " : " + domain);
+					tmp_domain_set.add(domain);
+
+					if (domain in domains)
+						domains[domain] += 1;
+					else
+						domains[domain] = 1;
+				}
+			}
+		}
+	});
+
+	// Iterate over certain amount of URLs.
+	var url = urls[index];
+	var count = 0;
+
+	while (index < urls.length) {
+		try {
+			await Network.enable();
+			await Page.enable();
+
+			await Page.navigate({url: url});
+			await Page.loadEventFired();
+		}
+		catch (error) {
+			console.error(error);
+		}
+		finally {
+			count += 1;
+			index += 1;
+
+			if (count >= 400 || index >= urls.length) break;
+
+			url = urls[index];
+			tmp_domain_set.clear();
+		}
+	}
+
+	client.close();
+
+	console.log(Object.keys(domains).length.toString() + " domains are captured.");
+
+	// Save result.
+	for (var key in domains) {
+		fs.appendFile(args[3], key + " " + domains[key].toString() + "\n", error => {});
+	}
+}
+
+// Command: node this_js urls cdns
+
+var index = 400;
+var args = process.argv;
+var urls = fs.readFileSync(args[2]).toString().split('\n');
+
+find_cdn(urls, index);
+
+
+// Note: don't open right panel to "disable cache", 
+// which would slow down the program instead.
