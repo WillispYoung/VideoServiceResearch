@@ -81,3 +81,5 @@ find_cdn(urls, index);
 
 // Q: Why CDNs used all seems work perfectly fine?
 // Try higher video qualities.
+
+// YouTube (July_4th, July_3rd): lowest quality
