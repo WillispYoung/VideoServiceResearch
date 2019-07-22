@@ -40,7 +40,7 @@ else:
 		
 		for domain in cdn_complete_set:
 			writer.write(domain + "|")
-			writer.write(cdn_complete_set[domian] + "|")
+			writer.write(str(cdn_complete_set[domain]) + "|")
 
 			ips = domain_resolution(domain)
 
@@ -70,6 +70,6 @@ else:
 
 			for i in range(len(locations) - 1):
 				writer.write(locations[i] + ",")
-			writer.write(locations[-1])
+			writer.write(locations[-1] + "\n")
 
 		writer.close()
