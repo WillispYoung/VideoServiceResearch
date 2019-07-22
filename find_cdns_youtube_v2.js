@@ -27,7 +27,7 @@ async function find_cdn(urls, index /* add pattern maybe ? */) {
 		}
 	});
 
-	// Iterate over certain amount of URLs.
+	// Iterate over certain amount of URLs synchronously.
 	var url = urls[index];
 	var count = 0;
 
@@ -40,13 +40,14 @@ async function find_cdn(urls, index /* add pattern maybe ? */) {
 			await Page.loadEventFired();
 		}
 		catch (error) {
-			console.error(error);
+			// console.error(error);
+			console.log("Capture over.")
 		}
 		finally {
 			count += 1;
 			index += 1;
 
-			if (count >= 400 || index >= urls.length) break;
+			if (/*count >= 400 ||*/ index >= urls.length) break;
 
 			url = urls[index];
 			tmp_domain_set.clear();
@@ -65,7 +66,7 @@ async function find_cdn(urls, index /* add pattern maybe ? */) {
 
 // Command: node this_js urls cdns
 
-var index = 400;
+var index = 0;
 var args = process.argv;
 var urls = fs.readFileSync(args[2]).toString().split('\n');
 
@@ -74,3 +75,7 @@ find_cdn(urls, index);
 
 // Note: don't open right panel to "disable cache", 
 // which would slow down the program instead.
+
+// Q: Why CDNs used in previous video page appears in current one?
+// A: I suppose this is because that socket in previous page is not closed, 
+// yet a new page is opened, so that socket is counted into the new page.
