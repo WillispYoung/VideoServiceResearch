@@ -1,3 +1,4 @@
+import os
 import sys
 import glob
 import geoip2.database
@@ -30,7 +31,12 @@ else:
 				else:
 					cdn_complete_set[items[0]] = int(items[1])
 
-		writer = open('data/{}/{}/statistics/{}/cdn_stats.txt'.format(location, website, week), 'w')
+		path = 'data/{}/{}/statistics/{}/'.format(location, website, week)
+		
+		if not os.path.exists(path):
+			os.mkdir(path)
+
+		writer = open(path + 'cdn_stats.txt', 'w')
 		
 		for domain in cdn_complete_set:
 			writer.write(domain + "|")
