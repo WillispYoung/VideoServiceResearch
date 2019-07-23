@@ -51,6 +51,8 @@ async function find_cdn(urls, index /* add pattern maybe ? */) {
 
 			url = urls[index];
 			tmp_domain_set.clear();
+
+			setTimeout(d => {}, 1000);
 		}
 	}
 
@@ -82,4 +84,5 @@ find_cdn(urls, index);
 // Q: Why CDNs used all seems work perfectly fine?
 // Try higher video qualities.
 
-// YouTube (July_4th, July_3rd): lowest quality
+// YouTube (July_4th -1, July_3rd): 144p (lowest)
+// YouTube (July_4th -2): auto (mainly 720p+)
