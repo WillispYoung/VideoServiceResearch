@@ -1,4 +1,5 @@
 # VideoServiceResearch
+
 This repository holds files that conduct experiments on video providers.
 
 ---
@@ -13,8 +14,7 @@ This repository holds files that conduct experiments on video providers.
 
 ### File and directory format:
 
-1. directory structure: location/website/date/{cdns, cdn_info}.txt
-2. line feed: use **\n** instead of **\r\n**
+1. line feed: use **\n** instead of **\r\n**
 
 ---
 
@@ -27,11 +27,21 @@ This repository holds files that conduct experiments on video providers.
 
 ---
 
+### Measurement
+
+1. **CDNs** used on video webpages
+2. **DNS results** for CDN domains
+3. **ping delays** or **RTT** to these domains
+4. **trace route** to these domains (**TODO**)
+5. **locations** of these domains
+
+---
+
 ### TODO:
 
 1. find a solution to crawl 500+ (or even 1000+) video pages with limited network consumption. If achieved, crawl only once a week. 
 
-	1.1  First solution might be optimize **find_cdns_yt.js** and utilize certain Chrome options. This is achieved by adjusting code structure, see **find_cdns_youtube_v2.js**.
+	1.1  First solution might be to optimize **find_cdns_yt.js** and utilize certain Chrome options. This is achieved by adjusting code structure, see **find_cdns_youtube_v2.js**.
 
 	1.2 Second solution is using **Wireshark** to record network information while using chromedriver to navigate into URLs. Although it local traffic is encrypted in HTTPS, reversel DNS might solve this problem. Once an IP's relative domain name matches certain pattern, it's what we are looking for. **TODO**
 
