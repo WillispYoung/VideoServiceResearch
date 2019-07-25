@@ -49,3 +49,4 @@ Secondly, with different answers to these questions, different optimizaiton stra
 
 If a video website uses random prefix domain strategy, we need first find out as many random domains used by this website as possible, so that we can characterize this website more precisely. Then we need to find out how often and how many **bad** CDN servers would be used: if both results are innegligible, then it's meaningful to avoid being recommended with these bad CDN servers. However, this requries massive measurements on the video website.
 
+According to multiple literatures, works that conduct research on YouTube CDNs capture traffic data from ISPs, however it's not possible for me to acquire such data. From the perspective of a client and a researcher, I can only acquire data using **multiple virtual machines** located in different locations, and through massive measurement on as **many webpages** as possible to characteristics of certain video providers. 
