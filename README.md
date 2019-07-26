@@ -34,12 +34,14 @@ This repository holds files that conduct experiments on video providers.
 3. **ping delays** or **RTT** to these domains
 4. **trace route** to these domains (**TODO**)
 5. **locations** of these domains
+6. capture video palying procedure ?
+7. find hints from **other network requests / responses** ?
 
 ---
 
 ### TODO:
 
-1. find a solution to crawl 500+ (or even 1000+) video pages with limited network consumption. If achieved, crawl only once a week. 
+1. find a solution to crawl 500+ (or even 1000+) video pages with limited network consumption. If achieved, crawl only once a week. *Done!*
 
 	1.1  First solution might be to optimize **find_cdns_yt.js** and utilize certain Chrome options. This is achieved by adjusting code structure, see **find_cdns_youtube_v2.js**.
 
