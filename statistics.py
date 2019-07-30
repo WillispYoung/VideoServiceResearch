@@ -1,7 +1,7 @@
 import os
 import sys 
 # import glob
-# import geoip2.database
+import geoip2.database
 
 from ping3 import ping
 from find_ips import domain_resolution
