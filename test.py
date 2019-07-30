@@ -1,4 +1,53 @@
-import socket
+# import re
+# import requests
 
-# this does not work for Google CDNs.
-print(socket.gethostbyaddr("74.125.96.41"))
+# url = "https://www.youtube.com/watch?v=z0grXGgO9DY"
+
+# proxies = {
+#     "http": "http://127.0.0.1:8080",
+#     "https": "https://127.0.0.1:8080"
+# }
+
+# response = requests.get(url, proxies=proxies).content.decode("utf-8").split("\n")
+
+# pattern = r"r\d-{3}\w{2}-\S{8}.googlevideo.com"
+
+# for line in response:
+#     res = re.findall(pattern, line)
+#     if len(res) > 0:
+#         print(res)
+
+# line = " https://r5---sn-i3b7knld.googlevideo.com/generate_20"
+
+# print(re.findall(pattern, line))
+
+
+# from selenium import webdriver
+# from selenium.webdriver.common.action_chains import ActionChains
+
+# browser = webdriver.Chrome("C:/Python/chromedriver75.exe")
+# browser.get("https://www.zhihu.com/search?type=content&q=SE")
+
+# cmd = 'var h = Math.max(document.documentElement["clientHeight"],document.body["scrollHeight"],document.documentElement["scrollHeight"],document.body["offsetHeight"],document.documentElement["offsetHeight"]);window.scrollTo(0,h+1000);'
+
+# browser.execute_script(cmd)
+
+# import re
+
+lines = open("urls.txt", "r").readlines()
+res = set()
+
+# print(lines[0])
+
+for line in lines:
+    line = line.strip()
+    # print(line)
+    if "https://www.youtube.com/watch?v" in line:
+        res.add(line)
+
+print(len(res))
+
+writer = open("urls.txt", "w")
+for line in res:
+    writer.write(line + "\n")
+writer.close()
