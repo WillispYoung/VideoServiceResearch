@@ -29,7 +29,7 @@ else:
 		output = open('data/{}/{}/{}/stats.txt'.format(location, website, date), "w")
 		lib = geoip2.database.Reader("../GeoLite2-City.mmdb")
 		for cdn in frequency:
-			output.write(cdn + " " + frequency[cdn] + " ")
+			output.write(cdn + " " + str(frequency[cdn]) + " ")
 
 			ips = domain_resolution(cdn)
 			if len(ips) == 0:
