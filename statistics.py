@@ -25,6 +25,8 @@ else:
 				frequency[cdn] += 1
 			else:
 				frequency[cdn] = 1
+
+		print("{} CDNs are captured".format(len(frequency)))
 		
 		output = open('data/{}/{}/{}/stats.txt'.format(location, website, date), "w")
 		lib = geoip2.database.Reader("../GeoLite2-City.mmdb")
@@ -38,8 +40,12 @@ else:
 			else:
 				output.write(ips[0] + " ")
 			
-			delay = "{:.3f}".format(ping(ips[0]) * 1000)
-			output.write(delay + " ")
+			try:
+				delay = "{:.3f}".format(ping(ips[0]) * 1000)
+				output.write(delay + " ")
+			except Exception:
+				print("error processing {}".format(cdn))
+				output.write("unk ")
 
 			res = lib.city(ips[0])
 			if res.city.name:
