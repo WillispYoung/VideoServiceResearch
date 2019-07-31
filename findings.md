@@ -22,3 +22,6 @@ There are 2 `<link rel="preload" href="*" as="fetch">` elements in the response 
 
 This conforms with the behavior of YouTube browsing. Yet is this the reason that YouTube video is loaded way faster than other elements (such as sidebar recommendations and footbar user comments) ?
 
+3. Multicasting
+
+Multicasting allows the server only accesses resource files once, but delivers the same block of files to multiple clients via multicasting channels. For video services, as video caching is required, block of video files that represent the same period of videos can be distributed to users that are not watching this period. Dispite the on-demand characteristic of video serviecs, resource caching fills the gap between current time point and distributed video block. 
