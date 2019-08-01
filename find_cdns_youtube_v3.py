@@ -81,12 +81,11 @@ def find_cdns(url_file, cdn_file):
 	}
 
 	urls = open(url_file, "r").readlines()
-	output = open(cdn_file, "w")
-
 	pattern = r"r\d-{3}\w{2}-\S{8}.googlevideo.com"
-
+	
 	count = 1
 	for url in urls:
+		output = open(cdn_file, "w")
 		# response = requests.get(url, proxies=proxies).content.decode("utf-8")
 		response = requests.get(url).content.decode("utf-8")
 		cdns = set(re.findall(pattern, response))
@@ -94,6 +93,7 @@ def find_cdns(url_file, cdn_file):
 			for cdn in cdns:
 				output.write(cdn + " ")
 			output.write("\n")
+		output.close()
 
 		if count % 100 == 0:
 			print("{} URLs processed".format(count))
