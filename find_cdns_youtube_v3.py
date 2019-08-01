@@ -75,10 +75,10 @@ def find_webpages():
 
 # Find 300+ CDNs.
 def find_cdns(url_file, cdn_file):
-	# proxies = {
-	# 	"http": "http://127.0.0.1:8080",
-	# 	"https": "https://127.0.0.1:8080"
-	# }
+	proxies = {
+		"http": "http://127.0.0.1:8080",
+		"https": "https://127.0.0.1:8080"
+	}
 
 	urls = open(url_file, "r").readlines()
 	output = open(cdn_file, "w")
