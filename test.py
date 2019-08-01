@@ -21,12 +21,19 @@
 
 # print(re.findall(pattern, line))
 
+import time
+from selenium import webdriver
+from selenium.webdriver.common.action_chains import ActionChains
 
-# from selenium import webdriver
-# from selenium.webdriver.common.action_chains import ActionChains
+urls = open("data/urls/youtube-v1.txt", "r").readlines()
 
-# browser = webdriver.Chrome("C:/Python/chromedriver75.exe")
-# browser.get("https://www.zhihu.com/search?type=content&q=SE")
+option = webdriver.ChromeOptions()
+option.add_argument("--proxy-server=http://127.0.0.1:8080")
+browser = webdriver.Chrome("C:/Python/chromedriver75.exe", options=option)
+
+for url in urls:
+        browser.get(url)
+        time.sleep(0.3)
 
 # cmd = 'var h = Math.max(document.documentElement["clientHeight"],document.body["scrollHeight"],document.documentElement["scrollHeight"],document.body["offsetHeight"],document.documentElement["offsetHeight"]);window.scrollTo(0,h+1000);'
 
