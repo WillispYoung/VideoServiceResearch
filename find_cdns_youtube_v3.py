@@ -86,6 +86,8 @@ def find_cdns(url_file, cdn_file):
 	count = 1
 	output = open(cdn_file, "a")
 	
+	start = time.time()
+
 	for url in urls:
 		# response = requests.get(url, proxies=proxies).content.decode("utf-8")
 		response = requests.get(url).content.decode("utf-8")
@@ -100,6 +102,11 @@ def find_cdns(url_file, cdn_file):
 		count += 1
 
 	output.close()
+
+	end = time.time()
+	elasped = int(end - start)
+	print("statistics finished in {} hours {} minutes {} seconds".format(elasped / 3600,  
+		(elasped % 3600) / 60, elasped % 60))
 
 	return
 
