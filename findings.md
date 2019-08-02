@@ -34,7 +34,7 @@ Multicasting allows the server only accesses resource files once, but delivers t
 
 * Delay stability: relatively stable.
 
-* Quality proportion: run python analyze.py -quality {location} {website}.
+* Quality proportion: run `python analyze.py -quality {location} {website}`.
 
 Hong Kong: 0.76 ~ 0.78 (bad CDNs among all CDNs), 0.17 (frequency of bad CDNs among frequency of all CDNs)
 
