@@ -25,3 +25,11 @@ This conforms with the behavior of YouTube browsing. Yet is this the reason that
 3. Multicasting
 
 Multicasting allows the server only accesses resource files once, but delivers the same block of files to multiple clients via multicasting channels. For video services, as video caching is required, block of video files that represent the same period of videos can be distributed to users that are not watching this period. Dispite the on-demand characteristic of video serviecs, resource caching fills the gap between current time point and distributed video block. 
+
+4. CDN Characteristics
+
+* DNS stability: highly stable, IP address for a domain will not change.
+
+* Frequency stability: 
+
+* Delay stability: 

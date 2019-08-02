@@ -21,19 +21,19 @@
 
 # print(re.findall(pattern, line))
 
-import time
-from selenium import webdriver
-from selenium.webdriver.common.action_chains import ActionChains
+# import time
+# from selenium import webdriver
+# from selenium.webdriver.common.action_chains import ActionChains
 
-urls = open("data/urls/youtube-v1.txt", "r").readlines()
+# urls = open("data/urls/youtube-v1.txt", "r").readlines()
 
-option = webdriver.ChromeOptions()
-option.add_argument("--proxy-server=http://127.0.0.1:8080")
-browser = webdriver.Chrome("C:/Python/chromedriver75.exe", options=option)
+# option = webdriver.ChromeOptions()
+# option.add_argument("--proxy-server=http://127.0.0.1:8080")
+# browser = webdriver.Chrome("C:/Python/chromedriver75.exe", options=option)
 
-for url in urls:
-        browser.get(url)
-        time.sleep(0.3)
+# for url in urls:
+#         browser.get(url)
+#         time.sleep(0.3)
 
 # cmd = 'var h = Math.max(document.documentElement["clientHeight"],document.body["scrollHeight"],document.documentElement["scrollHeight"],document.body["offsetHeight"],document.documentElement["offsetHeight"]);window.scrollTo(0,h+1000);'
 
@@ -41,20 +41,31 @@ for url in urls:
 
 # import re
 
-lines = open("urls.txt", "r").readlines()
-res = set()
+# lines = open("urls.txt", "r").readlines()
+# res = set()
 
-# print(lines[0])
+# # print(lines[0])
 
-for line in lines:
-    line = line.strip()
-    # print(line)
-    if "https://www.youtube.com/watch?v" in line:
-        res.add(line)
+# for line in lines:
+#     line = line.strip()
+#     # print(line)
+#     if "https://www.youtube.com/watch?v" in line:
+#         res.add(line)
 
-print(len(res))
+# print(len(res))
 
-writer = open("urls.txt", "w")
-for line in res:
-    writer.write(line + "\n")
-writer.close()
+# writer = open("urls.txt", "w")
+# for line in res:
+#     writer.write(line + "\n")
+# writer.close()
+
+
+# import matplotlib.pyplot as plt
+
+# figure = plt.figure()
+# axis = figure.add_subplot(1, 1, 1)
+
+# axis.plot([1, 1, 1], [2, 3, 4])
+
+# plt.show()
+
