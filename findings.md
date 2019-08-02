@@ -36,9 +36,9 @@ Multicasting allows the server only accesses resource files once, but delivers t
 
 * Quality proportion: run python analyze.py -quality {location} {website}.
 
-Hong Kong: 0.76~0.78 (bad CDNs among all CDNs), 0.17 (frequency of bad CDNs among frequency of all CDNs)
+Hong Kong: 0.76 ~ 0.78 (bad CDNs among all CDNs), 0.17 (frequency of bad CDNs among frequency of all CDNs)
 
-Singapore: 0.79~0.82, 0.10~0.14
+Singapore: 0.79 ~ 0.82, 0.10 ~ 0.14
 
 Silicon: 0.32, 0.04
 
