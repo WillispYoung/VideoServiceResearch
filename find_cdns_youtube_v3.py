@@ -92,10 +92,9 @@ def find_cdns(url_file, cdn_file):
 		# response = requests.get(url, proxies=proxies).content.decode("utf-8")
 		response = requests.get(url).content.decode("utf-8")
 		cdns = set(re.findall(pattern, response))
-		if len(cdns) > 0:
-			for cdn in cdns:
-				output.write(cdn + " ")
-			output.write("\n")
+		for cdn in cdns:
+			output.write(cdn + " ")
+		output.write("\n")
 
 		if count % 100 == 0:
 			print("{} URLs processed".format(count))
