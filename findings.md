@@ -28,18 +28,28 @@ Multicasting allows the server only accesses resource files once, but delivers t
 
 4. CDN Characteristics
 
-* DNS stability: highly stable, IP address for a domain will not change.
+* DNS stability: run `python analyze.py -diff {location} {website}`. Highly stable, IP address for a domain will not change.
 
-* Frequency stability: varies sharply in Hong Kong, mildly in Singapore and Silicon Valley.
+* Frequency stability: run `python analyze.py -freq {location} {website}`. Varies sharply in Hong Kong, mildly in Singapore and Silicon Valley.
 
-* Delay stability: relatively stable.
+* Delay stability: run `python analyze.py -delay {location} {website}`. Relatively stable.
 
-* Quality proportion: run `python analyze.py -quality {location} {website}`.
+* Quality proportion: run `python analyze.py -quality {location} {website}`. Results:
 
-Hong Kong: 0.76 ~ 0.78 (bad CDNs among all CDNs), 0.17 (frequency of bad CDNs among frequency of all CDNs)
+**Domain Proportion**: bad CDNs among all CDNs while getting all URLs
 
-Singapore: 0.79 ~ 0.82, 0.10 ~ 0.14
+**Frequency Proportion**: frequency of bad CDNs among frequency of all CDNs while getting all URLs
 
-Silicon: 0.32, 0.04
+Location | Domain Proportion| Frequency Proportion
+---|---|---
+Hong Kong | 0.76 ~ 0.78 | 0.17 
+Singapore | 0.79 ~ 0.82 | 0.10 ~ 0.14
+Silicon   | 0.32 | 0.04
+
+* Are poorly-performing CDNs clustered in certain subnets?
+
+
+* Does YouTube assign CDNs according to geolocation?
+
 
 5. Optimization
