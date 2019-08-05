@@ -235,12 +235,12 @@ elif flag == "-subnet":
         data.append(record)
     
     for i in range(len(data)):
-        print("* | " + dates[i] + " | ", end='')
+        print("- | " + dates[i] + " | ", end='')
         data[i].sort()
         for subnet in data[i]:
             print(subnet + ", ", end='')
         print()
 
 elif flag == "-geo":
-    
+
     
