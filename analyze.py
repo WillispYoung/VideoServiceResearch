@@ -210,3 +210,37 @@ elif flag == "-quality":
                     freq_count += int(data[i][key][0])
             freq_sum += int(data[i][key][0])
         print("{} : {:.2f}, {:.2f}".format(dates[i], count/len(data[i]), freq_count/freq_sum))
+
+elif flag == "-subnet":
+    location = sys.argv[2]
+    website = sys.argv[3]
+
+    data_files = glob.glob("data/{}/{}/*/stats.txt".format(location, website))
+    data_files = [f.replace("\\", "/") for f in data_files]
+
+    # print(data_files)
+
+    dates = [f.split("/")[3] for f in data_files]
+    data = []
+
+    for f in data_files:
+        lines = open(f, "r").readlines()
+        record = set()
+        for line in lines:
+            items = line.split()
+            ip = items[2].split(".")
+            subnet = ip[0] + "." + ip[1]
+            record.add(subnet)
+        record = list(record)
+        data.append(record)
+    
+    for i in range(len(data)):
+        print("* | " + dates[i] + " | ", end='')
+        data[i].sort()
+        for subnet in data[i]:
+            print(subnet + ", ", end='')
+        print()
+
+elif flag == "-geo":
+    
+    

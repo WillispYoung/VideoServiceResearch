@@ -69,3 +69,9 @@
 
 # plt.show()
 
+# print(bin(185)[2:])
+# print(bin(167)[2:])
+# print(bin(7)[2:])
+
+# print("a", end='')
+# print("b")

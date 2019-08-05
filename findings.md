@@ -14,7 +14,7 @@ Take URL "https://www.youtube.com/watch?v=z0grXGgO9DY" as example:
 * send multiple state data to YouTube server
 * GET https://r6---sn-i3b7kn7z.googlevideo.com/videoplayback?*** (called by base.js; fetch video block file from CDN servers; this domain sometimes changes as playing procedure prolongs, possibly due to load balancing)
 
-As response to the 2st request contains CDN server's domain, this hints another solution to capture more CDN domains with much less traffic consumed.
+As response to the 2nd request contains CDN server's domain, this hints another solution to capture more CDN domains with much less traffic consumed.
 
 2. Preload
 
@@ -48,8 +48,25 @@ Multicasting allows the server only accesses resource files once, but delivers t
 
 * Are poorly-performing CDNs clustered in certain subnets?
 
+    No, a subnet contains both well-performing and poorly-performing CDNs.
 
-* Does YouTube assign CDNs according to geolocation?
+    Location | Date | Subnets
+    ---|---|---
+    Silicon Valley | 19-8-1 | 172.217, 173.194, 209.85, 74.125,
+    * | 19-8-2 | 172.217, 173.194, 209.85, 74.125,
+    * | 19-8-3 | 173.194, 74.125,
+    * | 19-8-5 | 172.217, 173.194, 209.85, 74.125,
+    Hong Kong | 19-7-30 | 173.194, 172.217, 209.85, 74.125,
+    * | 19-7-31 | 173.194, 172.217, 209.85, 74.125,
+    * | 19-8-1 | 173.194, 172.217, 74.125, 209.85,
+    * | 19-8-2 | 173.194, 172.217, 74.125, 209.85,
+    Singapore | 19-7-31 | 172.217, 173.194, 209.85, 74.125,
+    * | 19-8-1 | 172.217, 173.194, 209.85, 74.125,
+    * | 19-8-2 | 172.217, 173.194, 209.85, 74.125,
+    * | 19-8-3 | 172.217, 173.194, 209.85, 74.125,
 
+* Does YouTube assign CDNs really considering geolocation?
+
+    Actually **NO**. From the perspective of subnet, subnets of CDNs used in different geolocations are exactly identical; 
 
 5. Optimization
