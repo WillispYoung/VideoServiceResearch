@@ -242,5 +242,22 @@ elif flag == "-subnet":
         print()
 
 elif flag == "-geo":
+    locations = ["hongkong", "singapore", "silicon"]
+    website = sys.argv[2]
+    cdns = []
 
+    for l in locations:
+        data = glob.glob("data/{}/{}/*/stats.txt".format(l, website))
+        
+        cdn_complete_set = set()
+        for d in data:
+            lines = open(d, 'r').readlines()
+            cdn = set([line.split()[0] for line in lines])
+            cdn_complete_set = cdn_complete_set.union(cdn)
+        cdns.append(cdn_complete_set)
+
+    for i in range(len(locations)):
+        for j in range(i+1, len(locations)):
+            intersection = cdns[i].intersection(cdns[j])
+            print("{} - {} : {}".format(locations[i], locations[j], len(intersection)))
     

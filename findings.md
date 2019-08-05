@@ -67,6 +67,12 @@ Multicasting allows the server only accesses resource files once, but delivers t
 
 * Does YouTube assign CDNs really considering geolocation?
 
-    Actually **NO**. From the perspective of subnet, subnets of CDNs used in different geolocations are exactly identical; 
+    Actually **NO**. From the perspective of subnet, subnets of CDNs used in different geolocations are exactly identical; with regard to CDN intersection (see table below), run `python analyze.py -geo {website}` also proves NO.
+
+    Location | Intersection Size
+    ---|---
+    hongkong - singapore | 2120
+    hongkong - silicon | 1851
+    singapore - silicon | 1531
 
 5. Optimization
