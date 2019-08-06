@@ -259,5 +259,55 @@ elif flag == "-geo":
     for i in range(len(locations)):
         for j in range(i+1, len(locations)):
             intersection = cdns[i].intersection(cdns[j])
-            print("{} - {} : {}".format(locations[i], locations[j], len(intersection)))
+            print("{} ({}) - {} ({}) | {}".format(locations[i].title(), len(cdns[i]), locations[j].title(), len(cdns[j]), len(intersection)))
     
+elif flag == "-page":
+    location = sys.argv[2]
+    website = sys.argv[3]
+
+    cdn_files = glob.glob("data/{}/{}/*/cdns.txt".format(location, website))
+    cdn_files = [f.replace("\\", "/") for f in cdn_files]
+
+    dates = [f.split("/")[3] for f in cdn_files]
+
+    for date in dates:
+        stats = open("data/{}/{}/{}/stats.txt".format(location, website, date), "r")
+        domain_freq = {}
+        for line in stats.readlines():
+            items = line.split()
+            domain_freq[items[0]] = items[1]
+
+        count = 0
+        cdns = open("data/{}/{}/{}/cdns.txt".format(location, website, date), "r")
+        freq = open("data/{}/{}/{}/freq.txt".format(location, website, date), "w")
+        for line in cdns.readlines():
+            items = line.split()
+            if len(items) == 0:
+                freq.write("0\n")
+            else:
+                for i in items:
+                    freq.write(domain_freq[i] + " ")
+                freq.write("\n")
+        freq.close()
+    
+elif flag == "-sort":
+    location = sys.argv[2]
+    website = sys.argv[3]
+
+    data_files = glob.glob("data/{}/{}/*/stats.txt".format(location, website))
+    
+    for f in data_files:
+        data = open(f, "r")
+        lines = data.readlines()
+        data.close()
+
+        f = f.replace("stats", "stats-sort")
+        output = open(f, "w")
+
+        lines = [(line, int(line.split()[1])) for line in lines]
+        lines = sorted(lines, key=lambda x: x[1], reverse=True)
+
+        for line in lines:
+            output.write(line[0])
+
+        output.close()

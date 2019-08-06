@@ -2,7 +2,7 @@
 
 ## YouTube
 
-1. Page Loading Process
+### 1. Page Loading Process
 
 Take URL "https://www.youtube.com/watch?v=z0grXGgO9DY" as example:
 
@@ -16,17 +16,17 @@ Take URL "https://www.youtube.com/watch?v=z0grXGgO9DY" as example:
 
 As response to the 2nd request contains CDN server's domain, this hints another solution to capture more CDN domains with much less traffic consumed.
 
-2. Preload
+### 2. Preload
 
 There are 2 `<link rel="preload" href="*" as="fetch">` elements in the response to the 1st request (`GET https://www.youtube.com/watch?v=z0grXGgO9DY`.) As these `<link>`s are directed to the CDN server that video block files are fetched from, it's presumably that `<link>`s with **preload** attribute could sharply accelerate video loading process. 
 
 This conforms with the behavior of YouTube browsing. Yet is this the reason that YouTube video is loaded way faster than other elements (such as sidebar recommendations and footbar user comments) ?
 
-3. Multicasting
+### 3. Multicasting
 
 Multicasting allows the server only accesses resource files once, but delivers the same block of files to multiple clients via multicasting channels. For video services, as video caching is required, block of video files that represent the same period of videos can be distributed to users that are not watching this period. Dispite the on-demand characteristic of video serviecs, resource caching fills the gap between current time point and distributed video block. 
 
-4. CDN Characteristics
+### 4. CDN Characteristics
 
 * **DNS stability**: run `python analyze.py -diff {location} {website}`. Highly stable, IP address for a domain will not change.
 
@@ -48,7 +48,7 @@ Multicasting allows the server only accesses resource files once, but delivers t
 
 * Are poorly-performing CDNs clustered in certain subnets?
 
-    No, a subnet contains both well-performing and poorly-performing CDNs.
+    No, a subnet contains both well-performing and poorly-performing CDNs. Run `python analyze.py -subnet {location} {website}`.
 
     Location | Date | Subnets
     ---|---|---
@@ -67,12 +67,23 @@ Multicasting allows the server only accesses resource files once, but delivers t
 
 * Does YouTube assign CDNs really considering geolocation?
 
-    Actually **NO**. From the perspective of subnet, subnets of CDNs used in different geolocations are exactly identical; with regard to CDN intersection (see table below), run `python analyze.py -geo {website}` also proves NO.
+    Actually **NO**. From the perspective of subnet, subnets of CDNs used in different geolocations are exactly identical; with regard to CDN intersection (see table below), run `python analyze.py -geo {website}`, the result also proves NO.
 
     Location | Intersection Size
     ---|---
-    hongkong - singapore | 2120
-    hongkong - silicon | 1851
-    singapore - silicon | 1531
+    Hongkong (2585) - Singapore (2905) | 2204
+    Hongkong (2585) - Silicon (1914) | 1911
+    Singapore (2905) - Silicon (1914) | 1631
 
-5. Optimization
+* Is assigned CDN related to page URL?
+
+    Hard to tell, yet seemingly not. Another finding: poorly-performing CDN is always accompanied with a better CDN, as in the case when mulitple (always 2) CDNs are contained in the response to the 1st request. I suppose this is a remedy solution to avoid over-using poorly-performing CDN. 
+
+    We may need to know the proportion of traffic volume directed to poorly-performing CDNs.
+
+### 5. Optimization
+
+Given the fact that frequency of poorly-performing CDNs doesn't exceed $0.17$, by simple calculation, $0.17^3 = 0.004913$, which ensures that within 3 times page refreshing, the possibility for at least 1 well-performing CDN being used is more than 99%.
+
+Although afore-mentioned hypothesis may not be valid enough, other problems occur: how to evaluate if a video is well-served, and what is the difference of effect between well- and poorly-performing CDNs? And as poorly-performing CDN is always accompanied with well-performing CDN, would the former even affect video quality?
+

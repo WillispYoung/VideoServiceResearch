@@ -65,7 +65,7 @@
 # figure = plt.figure()
 # axis = figure.add_subplot(1, 1, 1)
 
-# axis.plot([1, 1, 1], [2, 3, 4])
+# axis.scatter([2, 3, 4])
 
 # plt.show()
 
