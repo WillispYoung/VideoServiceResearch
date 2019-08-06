@@ -52,7 +52,8 @@ async function find_cdn(urls, index /* add pattern maybe ? */) {
 			url = urls[index];
 			tmp_domain_set.clear();
 
-			setTimeout(d => {}, 1000);
+			// setTimeout(d => {}, 1000);
+			
 		}
 	}
 

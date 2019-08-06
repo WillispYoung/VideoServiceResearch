@@ -311,3 +311,4 @@ elif flag == "-sort":
             output.write(line[0])
 
         output.close()
+
