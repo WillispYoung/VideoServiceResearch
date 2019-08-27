@@ -94,3 +94,5 @@ Replay the case when poorly-performing CDN is used. It's required that network i
 1. Use `Logging` functionality in Selenium to access _console_ and _network_ information recorded in Chrome.
 
 2. Utilize transparent proxy to access network information directly. However, because of the existence of GFW, 2 proxies, or a self-developed proxy is needed to access network information. 
+
+3. According to data/*/youtube/freq.txt, which shows the frequency of suggested CDNs for a web browserinig, wihtin 10 pages, the case of double-CDNs appears. Try manual testing.
