@@ -95,4 +95,6 @@ Replay the case when poorly-performing CDN is used. It's required that network i
 
 2. Utilize transparent proxy to access network information directly. However, because of the existence of GFW, 2 proxies, or a self-developed proxy is needed to access network information. 
 
-3. According to data/*/youtube/freq.txt, which shows the frequency of suggested CDNs for a web browserinig, wihtin 10 pages, the case of double-CDNs appears. Try manual testing.
+3. According to data/*/youtube/freq.txt, which shows the frequency of suggested CDNs for a web browserinig, wihtin 10 pages, the case of double-CDNs appears. Try **manual testing**.
+
+Another direction I think is: implement the hypothesized solution, to show the possibility of such solution.
