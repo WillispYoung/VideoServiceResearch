@@ -6,7 +6,7 @@
 
 Take URL "https://www.youtube.com/watch?v=z0grXGgO9DY" as example:
 
-* GET https://www.youtube.com/watch?v=z0grXGgO9DY (the response contains CDN server's domain that is used by this page for the most of time)
+* GET https://www.youtube.com/watch?v=z0grXGgO9DY(the response contains CDN server's domain that is used by this page for the most of time)
 * GET https://i.ytimg.com/generate_204 (triggered by fetch event of <link> element; this domain seems important as YouTube image)
 * GET https://r5---sn-i3b7knld.googlevideo.com/generate_204 (this domain is the CDN server used most of the time, might be inferred based on the result of 1.2)
 * GET https://r5---sn-i3b7knld.googlevideo.com/generate_204?conn2 (unknown)
@@ -14,7 +14,7 @@ Take URL "https://www.youtube.com/watch?v=z0grXGgO9DY" as example:
 * send multiple state data to YouTube server
 * GET https://r6---sn-i3b7kn7z.googlevideo.com/videoplayback?*** (called by base.js; fetch video block file from CDN servers; this domain sometimes changes as playing procedure prolongs, possibly due to load balancing)
 
-As response to the 2nd request contains CDN server's domain, this hints another solution to capture more CDN domains with much less traffic consumed.
+As the response to the 2nd request contains CDN server's domain, this hints another solution to capture more CDN domains with much less traffic consumed.
 
 ### 2. Preload
 
@@ -87,3 +87,10 @@ Given the fact that frequency of poorly-performing CDNs doesn't exceed $0.17$, b
 
 Although afore-mentioned hypothesis may not be valid enough, other problems occur: how to evaluate if a video is well-served, and what is the difference of effect between well- and poorly-performing CDNs? And as poorly-performing CDN is always accompanied with well-performing CDN, would the former even affect video quality?
 
+### 6. TODO
+
+Replay the case when poorly-performing CDN is used. It's required that network information can be accessed in real time. Probable solutions are:
+
+1. Use `Logging` functionality in Selenium to access _console_ and _network_ information recorded in Chrome.
+
+2. Utilize transparent proxy to access network information directly. However, because of the existence of GFW, 2 proxies, or a self-developed proxy is needed to access network information. 
