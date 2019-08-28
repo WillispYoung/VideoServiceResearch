@@ -91,10 +91,25 @@ Although afore-mentioned hypothesis may not be valid enough, other problems occu
 
 Replay the case when poorly-performing CDN is used. It's required that network information can be accessed in real time. Probable solutions are:
 
-1. Use `Logging` functionality in Selenium to access _console_ and _network_ information recorded in Chrome.
+1. Use `Logging` functionality in Selenium to access _console_ and _network_ information recorded in Chrome. Requires knowledge on the log files.
 
 2. Utilize transparent proxy to access network information directly. However, because of the existence of GFW, 2 proxies, or a self-developed proxy is needed to access network information. 
 
 3. According to data/*/youtube/freq.txt, which shows the frequency of suggested CDNs for a web browserinig, wihtin 10 pages, the case of double-CDNs appears. Try **manual testing**.
 
-Another direction I think is: implement the hypothesized solution, to show the possibility of such solution.
+---
+
+#### Result of Manual Testing:
+
+Of the 12 pages I've tested, the double-CDN case never happened, and the video playback flows are processed properly even video quality is very high (720p 60). 
+
+---
+
+Another direction I think is: implement the hypothesized solution to show the possibility of such solution.
+
+### 7. Video Transmission Format
+
+As many video providers now use **.ts** (Transport Stream) format to stream video files, such streaming task is conducted in JavaScript. By setting certain **EventListener**s, JavaScript codes are able to cache a video block within specified byte range, as long as the server supports such functionality. 
+
+See https://developers.google.com/web/fundamentals/media/fast-playback-with-video-preload.
+
