@@ -107,9 +107,28 @@ Of the 12 pages I've tested, the double-CDN case never happened, and the video p
 
 Another direction I think is: implement the hypothesized solution to show the possibility of such solution.
 
+Yet another one: use `tcpdump` to get more network information (RTT, loss rate, bandwidth capacity).
+
 ### 7. Video Transmission Format
 
 As many video providers now use **.ts** (Transport Stream) format to stream video files, such streaming task is conducted in JavaScript. By setting certain **EventListener**s, JavaScript codes are able to cache a video block within specified byte range, as long as the server supports such functionality. 
 
 See https://developers.google.com/web/fundamentals/media/fast-playback-with-video-preload.
 
+### 8. Google's CDN
+
+> 1st Party: 
+
+R. Krishnan, H. V. Madhyastha, S. Srinivasan, S. Jain, A. Krishnamurthy, T. Anderson, and J. Gao, **“Moving Beyond End-to-End Path Information to Optimize CDN Performance,”** in IMC, 2009.
+
+Y. Zhu, B. Helsley, J. Rexford, A. Siganporia, and S. Srinivasan, **“LatLong: Diagnosing wide-area latency changes for CDNs,”** in Transactions on Network and Service Management, 2012.
+
+T. Flach, N. Dukkipati, A. Terzis, B. Raghavan, N. Cardwell, Y. Cheng, A. Jain, S. Hao, E. Katz-Bassett, and R. Govindan, **“Reducing Web Latency: The Virtue of Gentle Aggression,”**  SIGCOMM, vol. 43, no. 4, pp. 159–170, 2013.
+
+> 3rd Party:
+
+Google Cloud CDN. https://cloud.google.com/cdn/.
+
+> Load balancing: 
+
+Google Cloud Load Balancer. https://cloud.google.com/load-balancing/
