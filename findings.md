@@ -65,6 +65,14 @@ Multicasting allows the server only accesses resource files once, but delivers t
     - | 19-8-2 | 172.217, 173.194, 209.85, 74.125,
     - | 19-8-3 | 172.217, 173.194, 209.85, 74.125,
 
+    inetnum: 
+    
+        69.194.128.0 - 76.255.255.255
+        209.43.0.0 - 209.162.127.255
+        173.0.0.0 - 173.212.191.255
+        172.103.96.0 - 172.240.255.255
+
+
 * Does YouTube assign CDNs really considering geolocation?
 
     Actually **NO**. From the perspective of subnet, subnets of CDNs used in different geolocations are exactly identical; with regard to CDN intersection (see table below), run `python analyze.py -geo {website}`, the result also proves NO.
@@ -107,7 +115,9 @@ Of the 12 pages I've tested, the double-CDN case never happened, and the video p
 
 Another direction I think is: implement the hypothesized solution to show the possibility of such solution.
 
-Yet another one: use `tcpdump` to get more network information (RTT, loss rate, bandwidth capacity).
+Yet another one: use `tcpdump` to get more network information (RTT, ECN, loss rate, bandwidth capacity).
+
+Inband Network Telemetry: capture network information on the switches (and accessible for end-users).
 
 ### 7. Video Transmission Format
 
